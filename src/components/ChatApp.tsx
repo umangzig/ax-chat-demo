@@ -53,6 +53,7 @@ export default function ChatApp() {
   const [inputValue, setInputValue] = useState("");
   const [status, setStatus] = useState<ConnectionStatus>("idle");
   const [isLoading, setIsLoading] = useState(true);
+  const [isTyping, setIsTyping] = useState(false);
 
   const wsClientRef = useRef<WebSocketClient | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -102,6 +103,7 @@ export default function ChatApp() {
               };
 
               setMessages((prev) => [...prev, newMsg]);
+              setIsTyping(false);
             },
           }
         );
@@ -140,6 +142,7 @@ export default function ChatApp() {
     wsClientRef.current?.send(inputValue);
 
     setInputValue("");
+    setIsTyping(true);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -243,6 +246,18 @@ export default function ChatApp() {
             </div>
           );
         })}
+
+        {/* Typing Indicator */}
+        {isTyping && (
+          <div className="typing-indicator-container">
+            <div className="typing-indicator">
+              <div className="typing-dot"></div>
+              <div className="typing-dot"></div>
+              <div className="typing-dot"></div>
+            </div>
+          </div>
+        )}
+
         {isLoading && (
           <div style={{ padding: 20, textAlign: "center" }}>Connecting...</div>
         )}
