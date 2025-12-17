@@ -11,7 +11,7 @@ export async function initiateChatSession(): Promise<Session> {
       headers: {
         "Content-Type": "application/json",
         Authorization:
-          "Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY2MDQ2MzAwLCJpYXQiOjE3NjU5NTk5MDAsImp0aSI6IjQwMjNiZGI5OWY5YjRmMDY4M2RhMTEyMzQxMjNiZGJhIiwiaWQiOjY1MTM3MjQ0OTh9.nyoxwZSGzIieoo-QBuosK8IJ2okqbQT70Pw1Spyj4m0",
+          "Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzcxMTUwODg1LCJpYXQiOjE3NjU5NjY4ODUsImp0aSI6IjQxYTQ2YzI3MDVmOTQwYWNiOWE2NDE0NmEyNzA1MDMxIiwiaWQiOjY1MTM3MjQ0OTh9.aZTvhOboV8dxfYxSjRr2-GFq9NWQV-aotzf8S5hnI0c",
       },
       body: JSON.stringify({}),
     });
