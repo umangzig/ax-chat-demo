@@ -6,6 +6,7 @@ import styles from "./embed.module.css";
 
 export default function EmbedPage() {
   const [isOpen, setIsOpen] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const toggleWidget = () => {
     const newState = !isOpen;
@@ -33,7 +34,7 @@ export default function EmbedPage() {
         aria-label="Toggle Chat">
         {isOpen ? (
           <svg
-            className={styles.icon}
+            className={styles.svgIcon}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -43,9 +44,16 @@ export default function EmbedPage() {
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
+        ) : !imageError ? (
+          <img
+            src="https://docs.axiumai.io/img/favicon.png"
+            alt="Chat"
+            className={styles.icon}
+            onError={() => setImageError(true)}
+          />
         ) : (
           <svg
-            className={styles.icon}
+            className={styles.svgIcon}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

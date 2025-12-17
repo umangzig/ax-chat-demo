@@ -36,8 +36,6 @@
       console.warn(
         "Widget script origin not detected. Defaulting to production/local fallback."
       );
-      // In production, you might hardcode your production domain as a final fallback
-      // baseUrl = "https://your-vercel-app.vercel.app";
     }
 
     const WIDGET_URL = `${baseUrl}/embed`; // Points to the Next.js /embed page

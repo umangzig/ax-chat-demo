@@ -32,10 +32,10 @@
 }
 
 .toggleButton {
-  width: 60px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background-color: #0ea5e9;
+  background-color: #000000;
   color: white;
   border: none;
   cursor: pointer;
@@ -46,11 +46,13 @@
   justify-content: center;
   margin-top: 10px;
   flex-shrink: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .toggleButton:hover {
   transform: scale(1.05);
-  background-color: #0284c7;
+  background-color: #000000;
 }
 
 .toggleButton:active {
@@ -58,6 +60,12 @@
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+}
+
+.svgIcon {
+  width: 24px;
+  height: 24px;
 }
