@@ -191,7 +191,7 @@ export default function ChatApp() {
               {displayText && (
                 <div className="message-bubble" style={{ marginBottom: 4 }}>
                   {displayText}
-                  <span className="timestamp">
+                  <span className="timestamp" suppressHydrationWarning>
                     {new Date(msg.createdAt).toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit",
@@ -226,6 +226,7 @@ export default function ChatApp() {
               {hasComponents && !displayText && (
                 <span
                   className="timestamp"
+                  suppressHydrationWarning
                   style={{
                     display: "block",
                     textAlign: msg.role === "user" ? "right" : "left",

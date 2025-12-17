@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { UnifiedFixture } from "../../types/chat";
 
 function TeamDisplay({
@@ -36,7 +36,7 @@ function CarouselCard({ fixture }: { fixture: UnifiedFixture }) {
   const isKickedOff = fixture.status === "kicked-off";
   const isFinished = fixture.status === "finished";
 
-  // Helpers
+  // Helpers (safe when rendered mainly on client)
   const formatMatchTime = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -108,8 +108,19 @@ function CarouselCard({ fixture }: { fixture: UnifiedFixture }) {
 }
 
 export function UnifiedFixtureTable({ data }: { data: UnifiedFixture[] }) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // Logic to separate Today, Upcoming, Finished similar to RN
   const { todayList, upcomingList, finishedList } = useMemo(() => {
+    // Prevent hydration mismatch by only processing dates on client
+    if (!isClient) {
+      return { todayList: [], upcomingList: [], finishedList: [] };
+    }
+
     const today: UnifiedFixture[] = [];
     const upcoming: UnifiedFixture[] = [];
     const finished: UnifiedFixture[] = [];
@@ -136,7 +147,11 @@ export function UnifiedFixtureTable({ data }: { data: UnifiedFixture[] }) {
 
     // Sort logic omitted for brevity, but can be added
     return { todayList: today, upcomingList: upcoming, finishedList: finished };
-  }, [data]);
+  }, [data, isClient]);
+
+  if (!isClient) {
+    return null; // Avoid rendering anything until mounted to prevent mismatch
+  }
 
   return (
     <div className="unified-fixture-table">
