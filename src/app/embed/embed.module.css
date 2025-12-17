@@ -1,0 +1,63 @@
+.embedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100vh;
+  width: 100vw;
+  padding: 10px; /* Small padding inside iframe */
+  background: transparent;
+  overflow: hidden;
+}
+
+.chatWrapper {
+  width: 100%;
+  height: calc(100% - 70px); /* Leave space for button */
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatWrapper.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.toggleButton {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #0ea5e9;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+
+.toggleButton:hover {
+  transform: scale(1.05);
+  background-color: #0284c7;
+}
+
+.toggleButton:active {
+  transform: scale(0.95);
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
